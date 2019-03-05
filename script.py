@@ -7,8 +7,6 @@ from key import *
 
 keywords='cell phone charger'
 
-amazon = AmazonAPI(newKey1,newKey2,'beyourshelves-20') # Inits API
-
 # Gets first page results for top amazon products
 products = amazon.search_n(10,Keywords=keywords, SearchIndex='All')
 
