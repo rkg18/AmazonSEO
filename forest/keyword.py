@@ -5,7 +5,11 @@ from flask import (
 from amazon.api import AmazonAPI
 from collections import Counter
 
-NUMBER_OF_PRODUCTS_SEARCH = 10 # CONSTANT VALUE, 10-Products = 1-Page Results
+# PlotLy Graphing Libraries
+import plotly.plotly as py
+import plotly.graph_objs as go
+
+NUMBER_OF_PRODUCTS_SEARCH = 30 # CONSTANT VALUE, 10-Products = 1-Page Results
 
 amazon = AmazonAPI('AKIAIDMLCQFWH64BE5KA','vNpc7x047m9ez18Zfw/90/s6jVj6okixTAr/3QNt','beyourshelves-20') # Inits API
 
@@ -52,9 +56,14 @@ def removeListOfKeywords(keywordFrequencyList):
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'with')
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'for')
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'and')
-    keywordFrequencyList = removeKeyword(keywordFrequencyList,'&')
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'to')
-    keywordFrequencyList = removeKeyword(keywordFrequencyList,'-')
+
+    keywordFrequencyList = [t for t in keywordFrequencyList if len(t[0]) > 1] 
+
+    # filters kw below certain count
+    countThreshold = NUMBER_OF_PRODUCTS_SEARCH / 6
+
+    keywordFrequencyList = [t for t in keywordFrequencyList if t[1] > countThreshold] 
 
     return keywordFrequencyList
 
@@ -62,3 +71,13 @@ def removeListOfKeywords(keywordFrequencyList):
 def printList(listObject):
     for i in listObject:
         print(i)
+
+def generateBarGraph():
+    data = [go.Bar(
+            x=['giraffes', 'orangutans', 'monkeys'],
+            y=[20, 14, 23]
+    )]
+
+    graph = py.iplot(data, filename='basic-bar')
+
+    return graph
