@@ -7,11 +7,24 @@
 <div class="row">
     <div class="col-lg-12 mt-3">
         <h2> Keyword: {{ kw }} </h2>
-        <ol>
-            {% for product in products %}
-                <li> {{ product }}</li>
-            {% endfor %}
-        </ol>
+
+        <table class="table" width="50%">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"> Keyword </th>
+                <th scope="col">Word Count</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <th> {{ product[0] }} </th>
+                        <th> {{ product[1] }} </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </div>
 </div>
 

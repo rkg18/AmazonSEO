@@ -26,10 +26,7 @@ def searchKW():
         # Removes unneccessary keywords
         keywordFrequencyList = removeListOfKeywords(keywordFrequencyList)
 
-        # prints
-        printList(keywordFrequencyList)
-
-        #return render_template('search/output.html', kw=keywords, products=products)
+        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList)
 
     return render_template('index.html')
 
