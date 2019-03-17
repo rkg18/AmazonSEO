@@ -3,6 +3,7 @@ from flask import (
 )
 
 from amazon.api import AmazonAPI
+from collections import Counter
 
 amazon = AmazonAPI('AKIAIDMLCQFWH64BE5KA','vNpc7x047m9ez18Zfw/90/s6jVj6okixTAr/3QNt','beyourshelves-20') # Inits API
 
@@ -17,6 +18,18 @@ def searchKW():
         # Gets first page results for top amazon products
         products = amazon.search_n(10,Keywords=keywords, SearchIndex='All')
 
-        return render_template('search/output.html', kw=keywords, products=products)
+        getFrequency(products)
+
+        #return render_template('search/output.html', kw=keywords, products=products)
 
     return render_template('index.html')
+
+
+def getFrequency(myList):
+    bigString = ""
+
+    for product in myList:
+        bigString = bigString + str(product)
+
+    result = Counter(bigString.split()).most_common()
+    print(result)
