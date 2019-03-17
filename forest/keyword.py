@@ -16,14 +16,13 @@ def searchKW():
         keywords = request.form['search']
 
         # Gets first page results for top amazon products
-        products = amazon.search_n(10,Keywords=keywords, SearchIndex='All')
+        products = amazon.search_n(50,Keywords=keywords, SearchIndex='All')
 
         getFrequency(products)
 
         #return render_template('search/output.html', kw=keywords, products=products)
 
     return render_template('index.html')
-
 
 def getFrequency(myList):
     bigString = ""
