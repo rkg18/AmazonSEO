@@ -2,16 +2,15 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, abort
 )
 
-from amazon.api import AmazonAPI
 from collections import Counter
+from forest.info import *
+from forest.price import getProductPrice, getPriceResultsList
 
 # PlotLy Graphing Libraries
 import plotly.plotly as py
 import plotly.graph_objs as go
 
 NUMBER_OF_PRODUCTS_SEARCH = 30 # CONSTANT VALUE, 10-Products = 1-Page Results
-
-amazon = AmazonAPI('AKIAIDMLCQFWH64BE5KA','vNpc7x047m9ez18Zfw/90/s6jVj6okixTAr/3QNt','beyourshelves-20') # Inits API
 
 bp = Blueprint('keyword', __name__)
 
@@ -24,13 +23,17 @@ def searchKW():
         # Gets page 1-3 results for products
         products = amazon.search_n(NUMBER_OF_PRODUCTS_SEARCH,Keywords=keywords, SearchIndex='All')
 
+        # calculates product pricing
+        listOfProductPrices = getProductPrice(products)
+        minMaxAvg = getPriceResultsList(listOfProductPrices)
+
         # Counts Frequency
         keywordFrequencyList = getFrequency(products)
 
         # Removes unneccessary keywords
         keywordFrequencyList = removeListOfKeywords(keywordFrequencyList)
 
-        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList)
+        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg)
 
     return render_template('index.html')
 
@@ -72,6 +75,7 @@ def printList(listObject):
     for i in listObject:
         print(i)
 
+"""
 def generateBarGraph():
     data = [go.Bar(
             x=['giraffes', 'orangutans', 'monkeys'],
@@ -81,3 +85,4 @@ def generateBarGraph():
     graph = py.iplot(data, filename='basic-bar')
 
     return graph
+"""
