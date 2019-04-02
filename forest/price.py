@@ -9,18 +9,22 @@ def getProductPrice(productList):
     return productPriceList
 
 def getMinPrice(productList):
-    for x in range(2):
-        price = min(productList)
-        productList.remove(price) # Gets outlier out of price
+    minPrice = 999999
 
-    return min(productList)
+    for i in productList:
+        if i < minPrice:
+            minPrice = i
+    
+    return minPrice
 
 def getMaxPrice(productList):
-    for x in range(2):
-        price = max(productList)
-        productList.remove(price) # Gets outlier out of price
+    maxPrice = 0
 
-    return max(productList)
+    for i in productList:
+        if i > maxPrice:
+            maxPrice = i
+
+    return maxPrice
 
 def getAveragePrice(productList):
     return sum(productList) / len(productList)
