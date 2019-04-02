@@ -5,7 +5,7 @@ from flask import (
 from collections import Counter
 from forest.info import *
 from forest.price import getProductPrice, getPriceResultsList, getPriceRanges
-from forest.images import downloadProductImages
+from forest.images import downloadProductImages, getProductUrl
 
 import random
 
@@ -23,8 +23,9 @@ def searchKW():
         products = amazon.search_n(NUMBER_OF_PRODUCTS_SEARCH,Keywords=keywords, SearchIndex='All')
 
         # gets images to server
-        downloadProductImages(products)
-        
+        #urlList = downloadProductImages(products)
+        productImageUrls = getProductUrl(products)
+
         # calculates product pricing
         listOfProductPrices = getProductPrice(products)
         minMaxAvg = getPriceResultsList(listOfProductPrices)
@@ -37,7 +38,8 @@ def searchKW():
         listOfKeywordColors = generateColorList(keywordFrequencyList) # Gets random list of colors
 
         return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg, colors=listOfKeywordColors,
-        priceColors=priceColors, priceCount=priceTuple[0],priceLabels=priceTuple[1])
+        priceColors=priceColors, priceCount=priceTuple[0],priceLabels=priceTuple[1],
+        urls=productImageUrls)
 
     return render_template('index.html')
 

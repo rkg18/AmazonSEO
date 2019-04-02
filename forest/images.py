@@ -25,3 +25,11 @@ def spliceProductName(productURL):
     productName = tempStr[startIndex:endIndex]
 
     return productName
+
+def getProductUrl(productList):
+    urls = []
+
+    for x in range(9):
+        urls.append(productList[x].large_image_url)
+
+    return urls

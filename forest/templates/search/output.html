@@ -130,6 +130,7 @@
 
 <!-- Product Images! -->
 <div class="row">
+<h1> Competitor Product Images </h1>
 <div class="col-lg-12 col-md-12">
 
     <div id="mdb-lightbox-ui"></div>
@@ -137,63 +138,33 @@
     <div class="mdb-lightbox">
 
     <div class="row">
+        {% for x in range(3) %}
         <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(145).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg" class="img-fluid">
+            <a href="{{ urls[x] }}" data-size="1600x1067">
+            <img alt="picture" src="{{ urls[x] }}" class="img-fluid">
             </a>
         </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(150).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg" class="img-fluid" />
-            </a>
-        </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(152).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(152).jpg" class="img-fluid" />
-            </a>
-        </figure>
+        {% endfor %}
     </div>
 
     <div class="row">
+        {% for x in range(3,6) %}
         <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" class="img-fluid" />
+            <a href="{{ urls[x] }}" data-size="1600x1067">
+            <img alt="picture" src="{{ urls[x] }}" class="img-fluid">
             </a>
         </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(151).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(151).jpg" class="img-fluid" />
-            </a>
-        </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(40).jpg" class="img-fluid" />
-            </a>
-        </figure>
+        {% endfor %}
     </div>
 
     <div class="row">
+        {% for x in range(6,9) %}
         <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(148).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(148).jpg" class="img-fluid" />
+            <a href="{{ urls[x] }}" data-size="1600x1067">
+            <img alt="picture" src="{{ urls[x] }}" class="img-fluid">
             </a>
         </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(147).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" class="img-fluid" />
-            </a>
-        </figure>
-    
-        <figure class="col-lg-4 col-md-4">
-            <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(149).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(149).jpg" class="img-fluid" />
-            </a>
-        </figure>
+        {% endfor %}
     </div>
 
     </div>
