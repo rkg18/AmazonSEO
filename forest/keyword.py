@@ -5,6 +5,7 @@ from flask import (
 from collections import Counter
 from forest.info import *
 from forest.price import getProductPrice, getPriceResultsList, getPriceRanges
+from forest.images import downloadProductImages
 
 import random
 
@@ -21,6 +22,9 @@ def searchKW():
         # Gets page 1-3 results for products
         products = amazon.search_n(NUMBER_OF_PRODUCTS_SEARCH,Keywords=keywords, SearchIndex='All')
 
+        # gets images to server
+        downloadProductImages(products)
+        
         # calculates product pricing
         listOfProductPrices = getProductPrice(products)
         minMaxAvg = getPriceResultsList(listOfProductPrices)
