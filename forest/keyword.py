@@ -6,6 +6,8 @@ from collections import Counter
 from forest.info import *
 from forest.price import getProductPrice, getPriceResultsList
 
+import random
+
 NUMBER_OF_PRODUCTS_SEARCH = 30 # CONSTANT VALUE, 10-Products = 1-Page Results
 
 bp = Blueprint('keyword', __name__)
@@ -29,7 +31,10 @@ def searchKW():
         # Removes unneccessary keywords
         keywordFrequencyList = removeListOfKeywords(keywordFrequencyList)
 
-        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg)
+        # Gets random list of colors
+        listOfKeywordColors = generateColorList(keywordFrequencyList)
+
+        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg, colors=listOfKeywordColors)
 
     return render_template('index.html')
 
@@ -70,3 +75,17 @@ def removeListOfKeywords(keywordFrequencyList):
 def printList(listObject):
     for i in listObject:
         print(i)
+
+# Gets random colors for chart
+def generateColorList(keywordFrequencyList):
+    colorList = []
+
+    # Gets number of keywords in list
+    keywordFrequencyCount = len(keywordFrequencyList)
+
+    for i in range(keywordFrequencyCount):
+        r = lambda: random.randint(0,255)
+        colorHexCode = '#%02X%02X%02X' % (r(),r(),r())
+        colorList.append(colorHexCode)
+
+    return colorList
