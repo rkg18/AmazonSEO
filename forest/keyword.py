@@ -6,10 +6,6 @@ from collections import Counter
 from forest.info import *
 from forest.price import getProductPrice, getPriceResultsList
 
-# PlotLy Graphing Libraries
-import plotly.plotly as py
-import plotly.graph_objs as go
-
 NUMBER_OF_PRODUCTS_SEARCH = 30 # CONSTANT VALUE, 10-Products = 1-Page Results
 
 bp = Blueprint('keyword', __name__)
@@ -51,7 +47,7 @@ def getFrequency(myList):
 
 # removes individual keyword
 def removeKeyword(listItem, word):
-    listItem = [t for t in listItem if t[0] != word] 
+    listItem = [t for t in listItem if t[0] != word]
     return listItem
 
 # Removes multiple keywords
@@ -61,12 +57,12 @@ def removeListOfKeywords(keywordFrequencyList):
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'and')
     keywordFrequencyList = removeKeyword(keywordFrequencyList,'to')
 
-    keywordFrequencyList = [t for t in keywordFrequencyList if len(t[0]) > 1] 
+    keywordFrequencyList = [t for t in keywordFrequencyList if len(t[0]) > 1]
 
     # filters kw below certain count
     countThreshold = NUMBER_OF_PRODUCTS_SEARCH / 6
 
-    keywordFrequencyList = [t for t in keywordFrequencyList if t[1] > countThreshold] 
+    keywordFrequencyList = [t for t in keywordFrequencyList if t[1] > countThreshold]
 
     return keywordFrequencyList
 
@@ -74,15 +70,3 @@ def removeListOfKeywords(keywordFrequencyList):
 def printList(listObject):
     for i in listObject:
         print(i)
-
-"""
-def generateBarGraph():
-    data = [go.Bar(
-            x=['giraffes', 'orangutans', 'monkeys'],
-            y=[20, 14, 23]
-    )]
-
-    graph = py.iplot(data, filename='basic-bar')
-
-    return graph
-"""
