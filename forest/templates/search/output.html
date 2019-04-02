@@ -58,15 +58,7 @@
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
+                options: {}
             });
             </script>
         
@@ -75,14 +67,63 @@
         
 </div>
 
+<br/><hr/><br/>
+
+<!-- Price Output -->
 <div class="row">
     <div class="col-lg-6 col-md-6">
-        <ul>
-            <li> {{ priceResult[0] }}</li>
-            <li> {{ priceResult[1] }}</li>
-            <li> {{ priceResult[2] }}</li>
-        </ul>
+        <canvas id="priceChart" width="400" height="400"></canvas>
+            
+        <script>
+        var ctx = document.getElementById('priceChart').getContext('2d');
+        var priceChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: [
+                        {% for label in priceLabels %}
+                            '{{ label }}',
+                        {% endfor %}
+                    ],
+                datasets: [{
+                    label: 'Price Range for Number of Items',
+                    data: [
+                        {% for item in priceCount %}
+                            '{{ item }}',
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        {% for color in priceColors %}
+                            '{{ color }}',
+                        {% endfor %}
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {}
+        });
+        </script>
     </div>
+
+    <div class="col-lg-6 col-md-6">
+        <h2> Price Range & Cost to Buy </h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"> Minimum </th>
+                    <th scope="col"> Maximum </th>
+                    <th scope="col"> Average </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th> ${{ priceResult[0] }} </th>
+                    <th> ${{ priceResult[1] }} </th>
+                    <th> ${{ priceResult[2] }} </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 {% endblock %}

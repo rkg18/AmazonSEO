@@ -4,7 +4,7 @@ from flask import (
 
 from collections import Counter
 from forest.info import *
-from forest.price import getProductPrice, getPriceResultsList
+from forest.price import getProductPrice, getPriceResultsList, getPriceRanges
 
 import random
 
@@ -24,17 +24,16 @@ def searchKW():
         # calculates product pricing
         listOfProductPrices = getProductPrice(products)
         minMaxAvg = getPriceResultsList(listOfProductPrices)
+        priceTuple = getPriceRanges(listOfProductPrices, minMaxAvg[1])
+        priceColors = generateColorList(priceTuple[0])
 
-        # Counts Frequency
-        keywordFrequencyList = getFrequency(products)
+        # keyword count
+        keywordFrequencyList = getFrequency(products) # Counts Frequency
+        keywordFrequencyList = removeListOfKeywords(keywordFrequencyList) # Removes unneccessary keywords
+        listOfKeywordColors = generateColorList(keywordFrequencyList) # Gets random list of colors
 
-        # Removes unneccessary keywords
-        keywordFrequencyList = removeListOfKeywords(keywordFrequencyList)
-
-        # Gets random list of colors
-        listOfKeywordColors = generateColorList(keywordFrequencyList)
-
-        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg, colors=listOfKeywordColors)
+        return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg, colors=listOfKeywordColors,
+        priceColors=priceColors, priceCount=priceTuple[0],priceLabels=priceTuple[1])
 
     return render_template('index.html')
 

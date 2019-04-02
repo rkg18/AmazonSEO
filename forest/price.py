@@ -1,4 +1,5 @@
 from forest.info import *
+import math
 
 def getProductPrice(productList):
     productPriceList = []
@@ -15,6 +16,8 @@ def getMinPrice(productList):
         if i < minPrice:
             minPrice = i
     
+    minPrice = round(minPrice,2)
+
     return minPrice
 
 def getMaxPrice(productList):
@@ -24,10 +27,12 @@ def getMaxPrice(productList):
         if i > maxPrice:
             maxPrice = i
 
+    maxPrice = round(maxPrice,2)
+
     return maxPrice
 
 def getAveragePrice(productList):
-    return sum(productList) / len(productList)
+    return round((sum(productList) / len(productList)),2)
 
 def getPriceResultsList(productList):
     minMaxAvg = []
@@ -37,3 +42,29 @@ def getPriceResultsList(productList):
     minMaxAvg.append(getAveragePrice(productList))
 
     return minMaxAvg
+
+############# Functions to generate Chart elements ######################
+def getPriceRanges(myList, maxPrice):
+
+    rangeNumber  = maxPrice / 5
+    rangeNumber  = math.ceil(rangeNumber)
+
+    priceRangeListLabels = []
+    priceRangeCount = []
+
+    for i in range(5):
+        rangeMaxNumber = (i+1) * rangeNumber
+        rangeMinNumber = i * rangeNumber
+        rangeLabel = str(rangeMinNumber) + " - " + str(rangeMaxNumber)
+
+        priceRangeListLabels.append(rangeLabel) # Adds label to list
+
+        priceCount = 0
+
+        for y in myList:
+            if(y <= rangeMaxNumber and y >= rangeMinNumber):
+                priceCount += 1
+
+        priceRangeCount.append(priceCount)
+
+    return priceRangeCount,priceRangeListLabels
