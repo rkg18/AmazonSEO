@@ -6,6 +6,7 @@ from collections import Counter
 from forest.info import *
 from forest.price import getProductPrice, getPriceResultsList, getPriceRanges
 from forest.images import downloadProductImages, getProductUrl
+from forest.reviews import getReviewCount
 
 import random
 
@@ -32,6 +33,9 @@ def searchKW():
         priceTuple = getPriceRanges(listOfProductPrices, minMaxAvg[1])
         priceColors = generateColorList(priceTuple[0])
 
+        #scrapes number of reviews
+        numberOfReviews = getReviewCount(products[0].asin)
+
         # keyword count
         keywordFrequencyList = getFrequency(products) # Counts Frequency
         keywordFrequencyList = removeListOfKeywords(keywordFrequencyList) # Removes unneccessary keywords
@@ -39,7 +43,8 @@ def searchKW():
 
         return render_template('search/output.html', kw=keywords, products=keywordFrequencyList, priceResult=minMaxAvg, colors=listOfKeywordColors,
         priceColors=priceColors, priceCount=priceTuple[0],priceLabels=priceTuple[1],
-        urls=productImageUrls)
+        urls=productImageUrls,
+        reviewCount=numberOfReviews)
 
     return render_template('index.html')
 
