@@ -6,8 +6,10 @@
 
 <div class="container">
 <div class="row mt-3">
-    <div class="col-lg-12"> <h2> Keyword: {{ kw }} </h2> </div>
+    <div class="col-lg-12"> <h2 style="text-align:center;"> Keyword: '{{ kw }}' </h2> </div>
 </div>
+
+<hr/>
 
 <div class="row mt-3">
         <!-- Keyword Table-->
@@ -124,8 +126,17 @@
             </tbody>
         </table>
 
-        <h2> Number of Reviews </h2>
-        <p> {{ reviewCount }} </p>
+        <br/>
+        <h2> Top Product Review Count </h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th class="thead-dark" scope="col">Number of Reviews</th>
+                <th scope="col">{{ reviewCount }}</th>
+              </tr>
+            </thead>
+        </table>
+
     </div>
 
 </div>
