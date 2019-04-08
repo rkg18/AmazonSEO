@@ -6,3 +6,21 @@
   .table-wrapper-scroll-y {
     display: block;
   }
+
+.masthead
+{
+  background-color:#222;
+  padding-top:12rem;
+  padding-bottom:12rem;
+}
+
+.index-header
+{
+  color:#FFF;
+}
+
+.centerIcon
+{
+  display:inline-block;
+  width:100%;
+}
