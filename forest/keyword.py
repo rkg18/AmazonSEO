@@ -34,9 +34,8 @@ def searchKW():
         priceColors = generateColorList(priceTuple[0])
 
         #scrapes number of reviews
-        ###numberOfReviews = getReviewCount(products[0].asin)
-        numberOfReviews = 0
-        
+        numberOfReviews = getReviewCount(products[0].asin)
+
         # keyword count
         keywordFrequencyList = getFrequency(products) # Counts Frequency
         keywordFrequencyList = removeListOfKeywords(keywordFrequencyList) # Removes unneccessary keywords

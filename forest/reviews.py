@@ -9,4 +9,7 @@ def getReviewCount(amazonAsin):
 
     test = page_content.find(id = "acrCustomerReviewText")
     
-    return test.text
+    output = test.text
+
+    print(output)
+    return output
