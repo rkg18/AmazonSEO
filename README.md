@@ -1,6 +1,6 @@
 # Forest | Amazon Keyword SEO Tool
 
-Capstone Project for Senior Seminar 
+Capstone Project for Senior Seminar - https://amazon-seo-forest.herokuapp.com/ (Ask for access; website goes to sleep on free plan on Heroku)
 
 ## Purpose
 
